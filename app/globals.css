@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;      /* #FFFFFF */
+    --foreground: 222 47% 11%;    /* #0F172A */
+    
+    --card: 0 0% 100%;            /* #FFFFFF */
+    --card-foreground: 222 47% 11%; /* #0F172A */
+    
+    --popover: 0 0% 100%;         /* #FFFFFF */
+    --popover-foreground: 222 47% 11%; /* #0F172A */
+    
+    --primary: 142 71% 45%;       /* #24B47E */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    --secondary: 210 40% 96%;     /* #F1F5F9 */
+    --secondary-foreground: 222 47% 11%; /* #0F172A */
+    
+    --muted: 210 40% 96%;         /* #F1F5F9 */
+    --muted-foreground: 215 16% 47%; /* #64748B */
+    
+    --accent: 142 71% 45%;        /* #24B47E */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    --destructive: 0 84% 60%;     /* #EF4444 */
+    --destructive-foreground: 210 40% 98%; /* #F8FAFC */
+
+    --border: 214 32% 91%;        /* #E2E8F0 */
+    --input: 214 32% 91%;         /* #E2E8F0 */
+    --ring: 142 71% 45%;          /* #24B47E */
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;    /* #0F172A */
+    --foreground: 210 40% 98%;    /* #F8FAFC */
+    
+    --card: 222 47% 11%;          /* #0F172A */
+    --card-foreground: 210 40% 98%; /* #F8FAFC */
+    
+    --popover: 222 47% 11%;       /* #0F172A */
+    --popover-foreground: 210 40% 98%; /* #F8FAFC */
+    
+    --primary: 142 71% 45%;       /* #24B47E */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    --secondary: 217 32% 17%;     /* #1E293B */
+    --secondary-foreground: 210 40% 98%; /* #F8FAFC */
+    
+    --muted: 217 32% 17%;         /* #1E293B */
+    --muted-foreground: 215 20% 65%; /* #94A3B8 */
+    
+    --accent: 142 71% 45%;        /* #24B47E */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+    
+    --destructive: 0 62% 30%;     /* #7F1D1D */
+    --destructive-foreground: 210 40% 98%; /* #F8FAFC */
+    
+    --border: 217 32% 17%;        /* #1E293B */
+    --input: 217 32% 17%;         /* #1E293B */
+    --ring: 142 71% 45%;          /* #24B47E */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    @apply bg-gradient-to-br from-primary/10 via-transparent to-transparent;
+  }
+  
+  .nav-link {
+    @apply text-sm font-medium text-muted-foreground hover:text-foreground transition-colors;
+  }
+  
+  .feature-card {
+    @apply p-6 rounded-lg border bg-card hover:shadow-lg transition-shadow;
+  }
+}

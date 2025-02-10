@@ -1,0 +1,50 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Recipe {
+  id            Int     @id @default(autoincrement())
+  title         String
+  image         String?
+  ingredients   String
+  instructions  String
+  prepTime      Int?
+  cookTime      Int?
+  favoriteCount Int     @default(0)
+}
+
+
+
+
+
+  // 
+  //"results": [
+  //   {
+  //     "id": 644271,
+  //     "title": "Spaghetti Carbonara",
+  //     "image": "https://spoonacular.com/recipeImages/644271-312x231.jpg",
+  //     "imageType": "jpg",
+  //     "cuisines": ["Italian"],
+  //     "dishTypes": ["main course"],
+  //     "instructions": "Boil spaghetti. Fry pancetta. Mix eggs and cheese. Combine everything.",
+  //     "ingredients": [
+  //       { "id": 1123, "name": "spaghetti", "amount": 200, "unit": "grams" },
+  //       { "id": 11215, "name": "pancetta", "amount": 100, "unit": "grams" },
+  //       { "id": 1035, "name": "eggs", "amount": 2, "unit": "" },
+  //       { "id": 1053, "name": "parmesan cheese", "amount": 50, "unit": "grams" }
+  //     ],
+  //     "readyInMinutes": 20,
+  //     "servings": 4,
+  //     "sourceUrl": "https://spoonacular.com/spaghetti-carbonara-644271",
+  //     "nutrition": {
+  //       "calories": 400,
+  //       "protein": 20,
+  //       "fat": 15,
+  //       "carbs": 50
+  //     }
+  //   }
