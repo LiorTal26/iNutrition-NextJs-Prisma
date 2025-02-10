@@ -227,7 +227,7 @@ export default function RecipesPage() {
           {/* Show message when no results found */}
           {recipes.length === 0 && !loading && query.trim() && (
             <Card className="p-6 text-center text-muted-foreground">
-              "{query}"
+              &quot;{query}&quot;
             </Card>
           )}
         </div>

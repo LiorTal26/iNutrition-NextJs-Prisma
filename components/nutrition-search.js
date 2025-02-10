@@ -105,7 +105,7 @@ export default function NutritionSearch() {
 
       {results && (!results.items || results.items.length === 0) && (
         <Card className="p-6 text-center text-muted-foreground bg-background/50 backdrop-blur-sm">
-          No nutrition data found for "{query}"
+          No nutrition data found for &quot;{query}&quot;
         </Card>
       )}
     </div>

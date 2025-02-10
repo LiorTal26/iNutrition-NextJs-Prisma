@@ -26,12 +26,12 @@ export default function RecipeList() {
     });
     fetchRecipes(); // Refresh the list after adding to favorites
   };
-
+  use
   useEffect(() => {
     if (query.trim()) {
       fetchRecipes();
     }
-  }, [query]);
+  }, [query, fetchRecipes]);
 
   // Function to parse ingredients
   const parseIngredients = (ingredientsString) => {
