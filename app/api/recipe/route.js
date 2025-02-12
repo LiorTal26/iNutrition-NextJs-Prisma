@@ -20,7 +20,8 @@ export async function GET(req) {
     const recipes = await prisma.recipe.findMany({
       where: {
         title: {
-          contains: query.toLowerCase(),
+          // contains: query.toLowerCase(),
+          contains: query,
         },
       },
       orderBy: { favoriteCount: 'desc' },
