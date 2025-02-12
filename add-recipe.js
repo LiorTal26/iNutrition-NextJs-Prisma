@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const axios = require('axios');
-const { set } = require('date-fns');
-const { dir } = require('node:console');
+const { log } = require('console');
+
 let counter = 0
 const prisma = new PrismaClient();
 function removeHtmlTags(instructions) {
@@ -9,7 +9,8 @@ function removeHtmlTags(instructions) {
   }
 async function addRecipesToDatabase() {
   try {
-    const apiUrl = 'https://api.spoonacular.com/recipes/random?number=10&apiKey=69fe81e0c8e7484d80fc6a51924963d4';
+    // const apiUrl = 'https://api.spoonacular.com/recipes/random?number=30&apiKey=69fe81e0c8e7484d80fc6a51924963d4'; //neelys api key
+    const apiUrl = 'https://api.spoonacular.com/recipes/random?number=30&apiKey=56cda4e8cfa24e12a4420f8803f673a6'; // lior api key
     const response = await axios.get(apiUrl);
 
     const recipes = response.data.recipes;
@@ -20,6 +21,16 @@ async function addRecipesToDatabase() {
     }
 
     for (const recipe of recipes) {
+
+      const existingRecipe = await prisma.recipe.findUnique({
+        where: { title: recipe.title }
+      });
+
+      if (existingRecipe) {
+        console.log(`⚠️ Skipping duplicate: ${recipe.title}`);
+        continue; // Skip this recipe if it's already in the database
+      }
+
       const ingredients = recipe.extendedIngredients
         ? recipe.extendedIngredients
             .map((ingredient) => `${ingredient.amount} ${ingredient.unit} ${ingredient.name}`)
@@ -55,7 +66,9 @@ async function addRecipesToDatabase() {
 
 setInterval(() => {
   addRecipesToDatabase();
-  console.log("Total number of Recipes added:" +counter);
-  
+  console.log();
+  console.log("📌Total number of Recipes added:" +counter);
+  console.log();
+
 }, 3000);
 // addRecipesToDatabase();

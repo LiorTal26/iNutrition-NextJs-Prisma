@@ -22,6 +22,7 @@ export async function GET(req) {
         title: {
           // contains: query.toLowerCase(),
           contains: query,
+          mode: 'insensitive', // Makes the search case-insensitive
         },
       },
       orderBy: { favoriteCount: 'desc' },
