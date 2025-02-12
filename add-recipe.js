@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const axios = require('axios');
-
+const { set } = require('date-fns');
+const { dir } = require('node:console');
+let counter = 0
 const prisma = new PrismaClient();
 function removeHtmlTags(instructions) {
     return instructions.replace(/<\/?[^>]+(>|$)/g, ""); // Remove all HTML tags
@@ -35,11 +37,13 @@ async function addRecipesToDatabase() {
           instructions: cleanInstructions || 'No instructions provided.',
           prepTime: recipe.readyInMinutes || null, // Using readyInMinutes as prepTime
           cookTime: recipe.readyInMinutes || null, // Adjust if needed
-          countFavorites: 0, // Optional, since it defaults to 0
+          favoriteCount: 0, // Optional, since it defaults to 0
         },
       });
 
-      console.log(`Added recipe: ${recipe.title}`);
+      console.log(`✅ Added recipe: ${recipe.title}`);
+      counter++
+      
     }
   } catch (error) {
     console.error('Error fetching or inserting recipes:', error.message);
@@ -49,4 +53,9 @@ async function addRecipesToDatabase() {
   }
 }
 
-addRecipesToDatabase();
+setInterval(() => {
+  addRecipesToDatabase();
+  console.log("Total number of Recipes added:" +counter);
+  
+}, 3000);
+// addRecipesToDatabase();
